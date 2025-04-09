@@ -750,17 +750,153 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div>
-            &copy; 2025 FireMods Games & Apps. All rights reserved.
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="dl-verified" style="text-align: center;">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Verified by Play Protect</span>
+                </div>
+            </div>
         </div>
     </footer>
+  
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Popular Apps</a></li>
+                    <li><a href="#">New Releases</a></li>
+                    <li><a href="#">Categories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 <a href="#">FIREMODS</a>. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Floating Help Button -->
+    <div class="help-button" id="helpButton">
+        <i class="fas fa-question"></i>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="help-modal">
+        <div class="help-modal-content">
+            <span class="close-help">&times;</span>
+            <div class="help-content">
+                <h3>How to Download Games</h3>
+                <p>To access our free downloads, we require users to complete a simple offer. These offers help support our platform and keep it free for everyone.</p>
+                
+                <p>The offers may include:</p>
+                <ul>
+                    <li>Trying an app or game</li>
+                    <li>Completing a short survey</li>
+                    <li>Signing up for a service</li>
+                </ul>
+                
+                <p>All offers are safe and legitimate. Thank you for your support!</p>
+                
+                <p><strong>Download Steps:</strong></p>
+                <ul>
+                    <li>Click on the game you want to download</li>
+                    <li>Complete the simple offer (usually takes less than 1 minute)</li>
+                    <li>Get your download link</li>
+                    <li>Install and enjoy!</li>
+                </ul>
+                
+                <button class="help-cta" id="closeHelpBtn">Got it, thanks!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script>/*<![CDATA[*/ cookieChoices = {}; /*]]>*/</script>
     <script>
+        const helpButton = document.getElementById('helpButton');
+        const helpModal = document.getElementById('helpModal');
+        const closeHelp = document.querySelector('.close-help');
+        const closeHelpBtn = document.getElementById('closeHelpBtn');
+      
         // Mobile Menu
         document.getElementById('menuIcon').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
         });
+
+        // Toggle help modal
+        helpButton.addEventListener('click', () => {
+            helpModal.style.display = 'block';
+            // Stop the pulse animation when clicked
+            helpButton.style.animation = 'none';
+        });
+
+        // Close modal when X is clicked
+        closeHelp.addEventListener('click', () => {
+            helpModal.style.display = 'none';
+        });
+
+        // Close modal when "Got it, thanks" is clicked
+        closeHelpBtn.addEventListener('click', () => {
+            helpModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === helpModal) {
+                helpModal.style.display = 'none';
+            }
+        });
+
+        
+        // Add slight wiggle animation to help button after 10 seconds if not clicked
+        setTimeout(() => {
+            if (!helpButton.clicked) {
+                helpButton.style.animation = 'pulse 2s infinite, wiggle 1s 3';
+            }
+        }, 10000);
+        
+        // Add wiggle animation keyframes
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes wiggle {
+                0% { transform: rotate(0deg); }
+                25% { transform: rotate(5deg); }
+                50% { transform: rotate(-5deg); }
+                75% { transform: rotate(5deg); }
+                100% { transform: rotate(0deg); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
